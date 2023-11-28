@@ -1,0 +1,32 @@
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.title {
+    padding-left: 15px;
+    font-size: 24px;
+}
+
+.list {
+    list-style-type: none;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    padding: 5px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    display: flex;
+    gap: 20px;
+}
+
+.title {
+    flex-grow: 1;
+}
