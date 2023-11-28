@@ -4,8 +4,12 @@
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
-    transition: .3s background-color;
+    transition: .3s background-color, .2 translate;
     color: white;
+
+    &:active {
+        translate: 0 1px;
+    }
 }
 
 .primary {

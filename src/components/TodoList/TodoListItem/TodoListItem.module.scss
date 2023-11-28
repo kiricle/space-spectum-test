@@ -1,0 +1,19 @@
+.list {
+    list-style-type: none;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    padding: 10px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.title {
+    flex-grow: 1;
+}

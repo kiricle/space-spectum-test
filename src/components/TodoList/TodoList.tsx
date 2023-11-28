@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import Badge from '../../ui/Badge/Badge';
-import Button from '../../ui/Button/Button';
 import styles from './TodoList.module.scss';
+import TodoListItem from './TodoListItem/TodoListItem';
 
 const TodoList = () => {
-    const [data, setData] = useState( [
+    const [data, setData] = useState([
         {
             userId: 1,
             id: 1,
@@ -20,7 +19,7 @@ const TodoList = () => {
     ]);
 
     const deleteItem = (id: number) => {
-        setData(prev => prev.filter((item) => item.id !== id));
+        setData((prev) => prev.filter((item) => item.id !== id));
     };
 
     return (
@@ -28,15 +27,13 @@ const TodoList = () => {
             <h2 className={styles.title}>Todo List</h2>
             <ul className={styles.list}>
                 {data.map(({ id, title, completed }) => (
-                    <li
+                    <TodoListItem
                         key={id}
-                        className={styles.item}
-                    >
-                        <h3 className={styles.title}>{title}</h3>
-                        <Badge>{completed ? 'completed' : 'pending'}</Badge>
-                        <Button appearance="secondary">Edit</Button>
-                        <Button onClick={() => deleteItem(id)} appearance="danger">X</Button>
-                    </li>
+                        id={id}
+                        title={title}
+                        completed={completed}
+                        deleteItem={deleteItem}
+                    />
                 ))}
             </ul>
         </div>
