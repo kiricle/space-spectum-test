@@ -29,7 +29,7 @@ const TodoList = () => {
                     >
                         <h3 className={styles.title}>{title}</h3>
                         <Badge>{completed ? 'completed' : 'pending'}</Badge>
-                        <Button appearance='primary'>Edit</Button>
+                        <Button appearance='secondary'>Edit</Button>
                         <Button appearance='danger'>X</Button>
                     </li>
                 ))}
