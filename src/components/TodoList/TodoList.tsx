@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import Badge from '../../ui/Badge/Badge';
 import Button from '../../ui/Button/Button';
 import styles from './TodoList.module.scss';
 
 const TodoList = () => {
-    const data = [
+    const [data, setData] = useState( [
         {
             userId: 1,
             id: 1,
@@ -16,7 +17,11 @@ const TodoList = () => {
             title: 'quis ut nam facilis et officia qui',
             completed: true,
         },
-    ];
+    ]);
+
+    const deleteItem = (id: number) => {
+        setData(prev => prev.filter((item) => item.id !== id));
+    };
 
     return (
         <div className={styles.container}>
@@ -29,8 +34,8 @@ const TodoList = () => {
                     >
                         <h3 className={styles.title}>{title}</h3>
                         <Badge>{completed ? 'completed' : 'pending'}</Badge>
-                        <Button appearance='secondary'>Edit</Button>
-                        <Button appearance='danger'>X</Button>
+                        <Button appearance="secondary">Edit</Button>
+                        <Button onClick={() => deleteItem(id)} appearance="danger">X</Button>
                     </li>
                 ))}
             </ul>
