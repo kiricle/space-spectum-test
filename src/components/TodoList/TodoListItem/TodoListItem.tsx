@@ -1,22 +1,27 @@
+import { useContext } from 'react';
 import { useModal } from '../../../hooks/useModal';
 import Badge from '../../../ui/Badge/Badge';
 import Button from '../../../ui/Button/Button';
 import ConfirmForm from '../../ConfirmForm/ConfirmForm';
 import ModalWindow from '../../ModalWindow/ModalWindow';
 import styles from './TodoListItem.module.scss';
+import { TodoActionsContext } from '../../../context/todo/todo-actions-context';
 
 const TodoListItem = ({
     id,
     title,
     completed,
-    deleteItem,
 }: {
     id: number;
     title: string;
     completed: boolean;
-    deleteItem: (id: number) => void;
 }) => {
     const [isOpen, openModal, closeModal] = useModal();
+    const actions = useContext(TodoActionsContext);
+
+    if (actions === undefined) {
+        throw new Error('Context is not provided');
+    }
 
     return (
         <li
@@ -40,7 +45,7 @@ const TodoListItem = ({
                     <ConfirmForm
                         message="Are you sure you want to delete this task?"
                         onCancel={closeModal}
-                        onConfirm={() => deleteItem(id)}
+                        onConfirm={() => actions.deleteTodo(id)}
                     />
                 </ModalWindow>
             )}
