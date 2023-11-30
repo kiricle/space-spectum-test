@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '../../ui/Button/Button';
-import styles from "./Paginator.module.scss"
+import styles from './Paginator.module.scss';
 
 type PaginatorProps<T> = {
     data: T[];
@@ -13,7 +13,7 @@ const Paginator = ({ data, render, itemsPerPage }: PaginatorProps<any>) => {
 
     const totalPages = Math.ceil(data.length / itemsPerPage);
 
-    const firstIndex = ((currentPage - 1) * itemsPerPage);
+    const firstIndex = (currentPage - 1) * itemsPerPage;
     const lastIndex = currentPage * itemsPerPage;
     const dataToRender = data.slice(firstIndex, lastIndex);
 
@@ -32,23 +32,27 @@ const Paginator = ({ data, render, itemsPerPage }: PaginatorProps<any>) => {
     return (
         <div className={styles.container}>
             {render(dataToRender)}
-            <div className={styles.controls}>
-                <Button
-                    onClick={goPrevPage}
-                    appearance="primary"
-                    disabled={currentPage === 1}
-                >
-                    {'<'}
-                </Button>
-                <span>{currentPage}/{totalPages}</span>
-                <Button
-                    onClick={goNextPage}
-                    appearance="primary"
-                    disabled={currentPage === totalPages}
-                >
-                    {'>'}
-                </Button>
-            </div>
+            {data.length > 0 && (
+                <div className={styles.controls}>
+                    <Button
+                        onClick={goPrevPage}
+                        appearance="primary"
+                        disabled={currentPage === 1}
+                    >
+                        {'<'}
+                    </Button>
+                    <span>
+                        {currentPage}/{totalPages}
+                    </span>
+                    <Button
+                        onClick={goNextPage}
+                        appearance="primary"
+                        disabled={currentPage === totalPages}
+                    >
+                        {'>'}
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };
