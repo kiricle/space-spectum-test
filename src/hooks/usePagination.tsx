@@ -13,6 +13,10 @@ export function usePagination<T>(
     const lastIndex = currentPage * itemsPerPage;
     const dataToRender = data.slice(firstIndex, lastIndex);
 
+    if(currentPage > totalPages && totalPages !== 0) {
+        setCurrentPage(totalPages)
+    }
+
     const goNextPage = () => {
         if (currentPage === totalPages) return;
 
