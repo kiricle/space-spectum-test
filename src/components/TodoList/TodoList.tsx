@@ -1,11 +1,8 @@
-import { useContext } from 'react';
 import styles from './TodoList.module.scss';
 import TodoListItem from './TodoListItem/TodoListItem';
-import { TodoContext } from '../../context/todo/todo-context';
 
-const TodoList = () => {
-    const todos = useContext(TodoContext);
-
+const TodoList = ({ todos }: { todos: Todo[] }) => {
+    // const todos = useContext(TodoContext);
 
     return (
         <div className={styles.container}>

@@ -1,3 +1,3 @@
 import {createContext} from 'react'
 
-export const TodoContext = createContext<Todo[]>([]);
+export const TodoContext = createContext<Todo[] | undefined>(undefined);

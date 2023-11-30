@@ -10,6 +10,10 @@
     &:active {
         translate: 0 1px;
     }
+
+    &:disabled {
+        opacity: .3;
+    }
 }
 
 .primary {
