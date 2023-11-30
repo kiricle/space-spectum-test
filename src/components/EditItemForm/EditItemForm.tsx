@@ -35,7 +35,7 @@ const EditItemForm = ({
             <label htmlFor="completed">
                 Completed:{' '}
                 <input
-                    onClick={() => setChecked((prev) => !prev)}
+                    onChange={() => setChecked((prev) => !prev)}
                     type="checkbox"
                     name="completed"
                     checked={checked}
