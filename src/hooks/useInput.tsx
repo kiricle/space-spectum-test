@@ -7,5 +7,5 @@ export default function useInput<T>(initialValue: T) {
         setValue(event.target.value as unknown as T);
     };
 
-    return [value, onChange] as const;
+    return [value, onChange, setValue] as const;
 }

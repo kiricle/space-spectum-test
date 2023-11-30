@@ -6,7 +6,7 @@ import styles from './CreateItemForm.module.scss';
 import useInput from '../../hooks/useInput';
 
 const CreateItemForm = () => {
-    const [title, onChange] = useInput('');
+    const [title, onChange, setTitle] = useInput('');
     const actions = useContext(TodoActionsContext);
 
     if (actions === undefined) {
@@ -23,11 +23,13 @@ const CreateItemForm = () => {
             <Button
                 onClick={(e) => {
                     e.preventDefault();
+                    if (title === '') return;
                     actions.addTodo({
                         id: new Date().getTime(),
                         title,
                         completed: false,
                     });
+                    setTitle('');
                 }}
                 appearance="primary"
             >

@@ -6,6 +6,7 @@ import ConfirmForm from '../../ConfirmForm/ConfirmForm';
 import ModalWindow from '../../ModalWindow/ModalWindow';
 import styles from './TodoListItem.module.scss';
 import { TodoActionsContext } from '../../../context/todo/todo-actions-context';
+import EditItemForm from '../../EditItemForm/EditItemForm';
 
 const TodoListItem = ({
     id,
@@ -16,7 +17,9 @@ const TodoListItem = ({
     title: string;
     completed: boolean;
 }) => {
-    const [isOpen, openModal, closeModal] = useModal();
+    const [isOpenConfirmForm, openConfirmForm, closeConfirmForm] = useModal();
+    const [isOpenEditForm, openEditForm, closeEditForm] = useModal();
+
     const actions = useContext(TodoActionsContext);
 
     if (actions === undefined) {
@@ -30,22 +33,42 @@ const TodoListItem = ({
         >
             <h3 className={styles.title}>{title}</h3>
             <Badge>{completed ? 'completed' : 'pending'}</Badge>
-            <Button appearance="secondary">Edit</Button>
             <Button
-                onClick={() => openModal()}
+                onClick={openEditForm}
+                appearance="secondary"
+            >
+                Edit
+            </Button>
+            <Button
+                onClick={openConfirmForm}
                 appearance="danger"
             >
                 X
             </Button>
-            {isOpen && (
+
+            {isOpenConfirmForm && (
                 <ModalWindow
-                    isOpen={isOpen}
-                    onClose={closeModal}
+                    isOpen={isOpenConfirmForm}
+                    onClose={closeConfirmForm}
                 >
                     <ConfirmForm
                         message="Are you sure you want to delete this task?"
-                        onCancel={closeModal}
+                        onCancel={closeConfirmForm}
                         onConfirm={() => actions.deleteTodo(id)}
+                    />
+                </ModalWindow>
+            )}
+
+            {isOpenEditForm && (
+                <ModalWindow
+                    isOpen={isOpenEditForm}
+                    onClose={closeEditForm}
+                >
+                    <EditItemForm
+                        id={id}
+                        title={title}
+                        completed={completed}
+                        onSubmit={closeEditForm}
                     />
                 </ModalWindow>
             )}

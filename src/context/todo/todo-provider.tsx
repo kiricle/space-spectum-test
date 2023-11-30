@@ -28,6 +28,11 @@ export const TodoProvider = ({ children }: PropsWithChildren) => {
         deleteTodo: (id: number) => {
             setTodos((prev) => prev.filter((todo) => todo.id !== id));
         },
+        editTodo: (newTodo: Todo) => {
+            setTodos((prev) =>
+                prev.map((todo) => (todo.id === newTodo.id ? newTodo : todo))
+            );
+        },
     } as TodoActions;
 
     return (
